@@ -23,7 +23,8 @@ pipeline{
         }
         stage("Deliver"){
             steps{
-                echo "Hola soy el Deliver"
+                echo "Deploying"
+                sh 'docker run -d --publish 3000:3000 nodehello'
             }
         }      
     }
