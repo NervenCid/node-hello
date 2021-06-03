@@ -10,7 +10,10 @@ pipeline{
     stages{
         stage("Build"){
             steps{
-                echo "Hola soy el Build"
+                echo "Building image"
+                sh 'docker rm -f $(docker ps -qa) || true'
+                sh 'docker rmi $(docker images -q) || true' 
+                sh 'docker build -t nodehello .'
             }
         }  
         stage("Test"){
